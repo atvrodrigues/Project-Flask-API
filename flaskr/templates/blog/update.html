@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Editar as informações de "{{ post['nome'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="title">Usuario</label>
+        <input class="form-control" name="usuario" value="{{ request.form['usuario'] or post['usuario'] }}" required>
+        <label for="title" id="title">UID</label>
+        <input class="form-control" name="uidNumber" value="{{ request.form['uidNumber'] or post['uidNumber'] }}" required>
+        <label for="title">Nome</label>
+        <input class="form-control" name="nome" value="{{ request.form['nome'] or post['nome'] }}" required>
+        <label for="title">Home</label>
+        <input class="form-control" name="home" value="{{ request.form['home'] or post['home'] }}" required>
+        <label for="title">Grupo Base</label>
+        <input class="form-control" name="grupoBase" value="{{ request.form['grupoBase'] or post['grupoBase'] }}" required>
+        <label for="title">Matricula</label>
+        <input class="form-control" name="matricula" value="{{ request.form['matricula'] or post['matricula'] }}" required>
+        <label for="title">Grupos Secundários</label>
+        <input class="form-control" name="grupoIncluso" value="{{ request.form['gruposSecundarios'] or post['gruposSecundarios'] }}" required>
+        <label for="title">Senha</label>
+        <input class="form-control" name="senha" value="{{ request.form['senha'] or post['senha'] }}" required>
+        <button type="submit" value="Save" class="btn btn-primary">Salvar</button>
+    </form>
+    <hr>
+    <form action="{{ url_for('blog.delete', uidNumber=post['uidNumber']) }}" method="post">
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Você tem certeza?');">
+    </form>
+{% endblock %}
+

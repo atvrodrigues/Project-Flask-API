@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+    <section class="content col-sm-12 col-md-12 col-lg-12">
+        <table class="table-responsive text-nowrap table-striped table-fixed" style="border-style: groove;">
+        <thead>
+          <tr style="text-align: center;">
+              <th scope="col"></th>
+            <th scope="col">UID</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">nome</th>
+            <th scope="col">home</th>
+            <th scope="col">grupoBase</th>
+            <th scope="col">matricula</th>
+            <th scope="col">Grupos Secundários</th>
+            <th scope="col">Senha</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+            <tr style="text-align: center;">
+            {% for post in posts %}
+              <td><a class="action" href="{{ url_for('blog.update', uidNumber=post['uidNumber']) }}">Editar</a></td>
+              <th scope="row">{{ post['uidNumber'] }}</th>
+              <td>{{ post['usuario'] }}</td>
+              <td>{{ post['nome'] }}</td>
+              <td>{{ post['home'] }}</td>
+              <td>{{ post['grupoBase'] }}</td>
+              <td>{{ post['matricula'] }}</td>
+              <td>{{ post['grupoSecundario'] }}</td>
+              <td>{{ post['senha'] }}</td>
+            </tr>
+                    {% if not loop.last %}
+                        <tr style="text-align: center;">
+                    {% endif %}
+                {% endfor %}
+                </tr>
+        <tbody>
+    </section>
+{% endblock %}
+

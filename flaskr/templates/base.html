@@ -1,0 +1,20 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - websystem</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <nav>
+    <h1>websystem</h1>
+    <ul>
+        <li><span>{{ g.user['username'] }}</span>
+        <li><a href="{{ url_for('auth.list_users') }}">Gerenciar usuários</a>
+        <li><a href="{{ url_for('auth.logout') }}">Sair</a>
+    </ul>
+  </nav>
+  <section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </section>
